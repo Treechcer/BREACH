@@ -16,7 +16,7 @@ function vectors.project(obj) --object has x y and z!
 end
 
 function vectors.rotate(obj, angle)
-    return vectors.rotateXZ(vectors.rotateYZ(obj, angle.yaw), angle.pitch)
+    return vectors.rotateYZ(vectors.rotateXZ(obj, angle.yaw), angle.pitch)
 end
 
 function vectors.rotateXZ(obj, angle)

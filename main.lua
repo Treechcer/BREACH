@@ -14,6 +14,8 @@ function love.load()
     camera = require("source.data.camera")
 
     pirad = 180 / math.pi
+
+    vertices.f.addObject(0,0,0.5,"monke", 0)
 end
 
 function love.draw()
@@ -48,6 +50,13 @@ function love.update(dt)
     if love.keyboard.isDown("lshift") then
         camera.pos.y = camera.pos.y + 1 * dt
     end
+
+    if love.keyboard.isDown("p") and game.lastPointChange >= game.pointCD then
+        game.renderPoints = not game.renderPoints
+        game.lastPointChange = 0
+    end
+
+    game.lastPointChange = game.lastPointChange + dt
 end
 
 function love.mousepressed(x, y, button, istouch, presses)
