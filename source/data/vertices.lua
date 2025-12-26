@@ -26,14 +26,17 @@ vertices = {
                 y = 0.5,
                 z = 0
             },
-            angle = 0
+            angle = {
+                yaw = 0,
+                pitch = 0
+            }
         }
     },
     f = {}
 }
 
 function vertices.f.addObject(x,y,z,objIndex, angle)
-    table.insert(vertices.objs, {verts = objects[objIndex].verts, lineWire = objects[objIndex].lineWire, move = {x = x, y = y, z = z}, angle = angle})
+    table.insert(vertices.objs, {verts = objects[objIndex].verts, lineWire = objects[objIndex].lineWire, move = {x = x, y = y, z = z}, angle = {yaw = 0, pitch = 0}})
 end
 
 return vertices
