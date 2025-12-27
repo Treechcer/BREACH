@@ -1,6 +1,7 @@
 love = require("love")
 
 function love.load()
+    love.mouse.setRelativeMode(true)
     love.graphics.setLineWidth(3)
     love.window.setMode(800, 800)
     math.randomseed(os.time())
@@ -24,8 +25,6 @@ function love.draw()
 end
 
 function love.update(dt)
-    love.mouse.setX(game.width/2)
-    love.mouse.setY(game.height/2)
     --move = move + dt
     --for key, o in pairs(vertices.objs) do
     --    o.angle.pitch = o.angle.pitch + math.pi*dt
@@ -37,11 +36,12 @@ function love.update(dt)
     end
 
     if love.keyboard.isDown("w") then
-        camera.pos.x = camera.pos.x + math.sin(1 * camera.angle.pitch) * dt
-        camera.pos.z = camera.pos.z + math.cos(1 * camera.angle.pitch) * dt
+        camera.pos.x = camera.pos.x + math.cos(camera.angle.yaw) * dt
+        camera.pos.z = camera.pos.z + math.sin(camera.angle.yaw) * dt
     end
     if love.keyboard.isDown("s") then
-        camera.pos.x = camera.pos.x - 1 * dt
+        camera.pos.x = camera.pos.x - math.cos(camera.angle.yaw) * dt
+        camera.pos.z = camera.pos.z - math.sin(camera.angle.yaw) * dt
     end
     
     if love.keyboard.isDown("space") then
@@ -64,6 +64,9 @@ function love.mousepressed(x, y, button, istouch, presses)
 end
 
 function love.mousemoved(x, y, dx, dy, istouch)
-    camera.angle.pitch = camera.angle.pitch + (dx / 500)
-    camera.angle.yaw = camera.angle.yaw - (dy / 500)
+    camera.angle.pitch = camera.angle.pitch + (dy / 900)
+    camera.angle.yaw = camera.angle.yaw - (dx / 900)
+
+    local maxPitch = math.rad(89)
+    camera.angle.pitch = math.max(-maxPitch, math.min(maxPitch, camera.angle.pitch))
 end
