@@ -36,12 +36,12 @@ function love.update(dt)
     end
 
     if love.keyboard.isDown("w") then
-        camera.pos.x = camera.pos.x + math.cos(camera.angle.yaw) * dt
-        camera.pos.z = camera.pos.z + math.sin(camera.angle.yaw) * dt
+        camera.pos.x = camera.pos.x - math.sin(camera.angle.pitch) * dt
+        camera.pos.z = camera.pos.z - math.cos(camera.angle.pitch) * dt
     end
     if love.keyboard.isDown("s") then
-        camera.pos.x = camera.pos.x - math.cos(camera.angle.yaw) * dt
-        camera.pos.z = camera.pos.z - math.sin(camera.angle.yaw) * dt
+        camera.pos.x = camera.pos.x + math.sin(camera.angle.pitch) * dt
+        camera.pos.z = camera.pos.z + math.cos(camera.angle.pitch) * dt
     end
     
     if love.keyboard.isDown("space") then
