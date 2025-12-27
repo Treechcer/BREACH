@@ -3,7 +3,7 @@ love = require("love")
 function love.load()
     love.mouse.setRelativeMode(true)
     love.graphics.setLineWidth(3)
-    love.window.setMode(800, 800)
+    love.window.setMode(800, 800, {vsync = 0})
     math.randomseed(os.time())
 
     love.graphics.setDefaultFilter("nearest", "nearest")
@@ -20,6 +20,9 @@ function love.load()
 end
 
 function love.draw()
+
+    love.graphics.print(love.timer.getFPS(), 10,10)
+
     love.graphics.setColor(51/255, 141/255, 255/255)
     renderer.render(camera.pos)
 end
